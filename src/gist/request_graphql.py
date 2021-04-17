@@ -77,3 +77,10 @@ class GraphQLClient:
 
         data = self.request_graphql(query)
         return data
+
+
+if __name__ == '__main__':
+    graphql_client = GraphQLClient(base_url='https://api.github.com/graphql',
+                                   token=github_personal_access_token)
+    marketplace_categories = graphql_client.get_marketplace_categories()
+    pretty_print_json(marketplace_categories)
