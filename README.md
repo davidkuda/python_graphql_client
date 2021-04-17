@@ -12,7 +12,13 @@ import requests
 
 def request_something():
     query = '''
-    query {}
+    query get_marketplace_categories { 
+      marketplaceCategories {
+        name
+        primaryListingCount
+        description
+      }
+    }
     '''
 
     response = requests.post(url='https://api.github.com/graphql',

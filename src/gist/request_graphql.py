@@ -62,9 +62,15 @@ class GraphQLClient:
 
         return response
 
-    def get_something(self):
+    def get_marketplace_categories(self):
         query = '''
-        query something {}
+        query get_marketplace_categories { 
+          marketplaceCategories {
+            name
+            primaryListingCount
+            description
+          }
+        }
         '''
 
         data = self.request_graphql(query)
