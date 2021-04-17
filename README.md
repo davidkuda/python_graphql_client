@@ -6,8 +6,12 @@ Recently I worked on a project where I had to request the GitHub GraphQL API fro
 
 ```python
 import json
+import os
 
 import requests
+
+
+TOKEN = os.getenv('GITHUB_PERSONAL_ACCESS_TOKEN')
 
 
 def request_something():
@@ -22,7 +26,9 @@ def request_something():
     '''
 
     response = requests.post(url='https://api.github.com/graphql',
-                             json={'query': query}).json()
+                             json={'query': query},
+                             headers={'Authorization': f'Bearer {TOKEN}'}
+                             ).json()
     
     return response
 
