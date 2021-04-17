@@ -1,8 +1,11 @@
 from logging import Logger
+import os
 
 import requests
 
 from utils import pretty_print_json
+
+github_personal_access_token = os.getenv('GITHUB_PERSONAL_ACCESS_TOKEN')
 
 
 class GraphQLClient:
@@ -18,9 +21,8 @@ class GraphQLClient:
         """
         self.base_url = base_url
         self._logger = logger
-        if token:
-            self.token = token
-            self.headers = {'Authorization': f'Bearer {self.token}'}
+        self.token = token
+        self.headers = {'Authorization': f'Bearer {self.token}'}
 
     def request_graphql(self, operation: str, variables: dict = None,
                         error_log: bool = True) -> dict:
